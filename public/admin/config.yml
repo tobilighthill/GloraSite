@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "public/assets"
+public_folder: "/assets"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    files:
+      - file: "public/blog.json"
+        label: "Blog Posts"
+        name: "posts"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Publish Date", name: "date", widget: "datetime", format: "MMM D, YYYY", date_format: "MMM D, YYYY", time_format: false}
+              - {label: "Excerpt", name: "excerpt", widget: "text"}
+              - {label: "Content", name: "content", widget: "markdown"}
+              - {label: "Cover Image", name: "image", widget: "image", required: false}

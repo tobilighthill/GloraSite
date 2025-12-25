@@ -205,28 +205,53 @@ function renderPortfolio() {
   `;
 }
 
-function renderBlog() {
+async function renderBlog() {
   mainContent.innerHTML = `
     <section class="section" style="padding-top: 150px;">
       <div class="container">
         <h1 class="reveal" style="font-size: 4rem; margin-bottom: 20px; text-align: center;">The <span style="color: var(--accent-gold)">Blog</span></h1>
         <p class="reveal" style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; max-width: 600px; margin-inline: auto;">
-          Thoughts, stories, and insights on the evolving landscape of digital media.
+          Thoughts, stories, and insights.
         </p>
-
-        <div style="display: grid; gap: 40px; max-width: 800px; margin: 0 auto;">
-           ${content.blog.map(post => `
-             <article class="glass reveal" style="padding: 40px;">
-                <span style="color: var(--accent-gold); font-size: 0.9rem;">${post.date}</span>
-                <h3 style="font-size: 2rem; margin: 10px 0 20px 0;">${post.title}</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 30px;">${post.excerpt}</p>
-                <button class="cta-button" style="padding: 10px 25px; font-size: 0.9rem;">Read More</button>
-             </article>
-           `).join('')}
+        <div id="blog-grid" style="display: grid; gap: 40px; max-width: 800px; margin: 0 auto;">
+           <div class="glass" style="padding: 40px; text-align: center;">Loading posts...</div>
         </div>
       </div>
     </section>
   `;
+
+  try {
+    const response = await fetch('/blog.json');
+    const posts = await response.json();
+    // The CMS saves the list under a key called "posts" if using the file collection approach defined in config.yml (name: "posts" inside the file)
+    // However, the JSON structure depends on how we initialized it. 
+    // If I initialized it as a raw array (checked step 1), I should read it as such.
+    // WAIT: Decap CMS with a 'file' collection usually expects an object structure if specific fields are defined, BUT with a list widget at the top level?
+    // Let's adjust the fetch logic to handle both array or object wrapper.
+    const blogPosts = Array.isArray(posts) ? posts : (posts.posts || []);
+
+    const blogGrid = document.getElementById('blog-grid');
+    if (blogPosts.length === 0) {
+      blogGrid.innerHTML = '<div class="glass" style="padding: 40px; text-align: center;">No posts found.</div>';
+      return;
+    }
+
+    blogGrid.innerHTML = blogPosts.map(post => `
+       <article class="glass reveal" style="padding: 40px;">
+          <span style="color: var(--accent-gold); font-size: 0.9rem;">${post.date}</span>
+          <h3 style="font-size: 2rem; margin: 10px 0 20px 0;">${post.title}</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 30px;">${post.excerpt}</p>
+          <button class="cta-button" style="padding: 10px 25px; font-size: 0.9rem;" onclick="alert('Full blog view implementation coming soon!')">Read More</button>
+       </article>
+    `).join('');
+
+    // Re-init reveal because new content was added
+    initReveal();
+
+  } catch (error) {
+    console.error("Failed to load blog:", error);
+    document.getElementById('blog-grid').innerHTML = '<div class="glass" style="padding: 40px; text-align: center;">Failed to load posts.</div>';
+  }
 }
 
 function renderContact() {
