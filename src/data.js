@@ -14,7 +14,7 @@ Over the years, I've had the privilege of working with some of Nigeria's most in
 At Pulse, I act in the full capacity of an SEO writer and content strategist to create articles that reach thousands of readers daily. Beyond clicks and other metrics, my work resonates with and helps readers understand what's happening around them, make better and informed decisions.
 
 I believe that in an age of artificial intelligence, human-centered storytelling is more valuable than ever. I specialize in taking complex narratives and making them accessible, engaging, and above all, human.`,
-    portrait: "/src/assets/gloria_portrait.png"
+    portrait: "/src/assets/1000168063.jpg"
   },
   contact: {
     email: "workwithgloriah@gmail.com",
@@ -50,7 +50,7 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "I Attended Lectures Alone for Four Years — How I Survived as the Only Student in My Department",
       category: "Editorial Features",
-      image: "/src/assets/article_1.png",
+      image: "/src/assets/I Attended Lectures Alone for Four Years — How I Survived as the Only Student in My Department.png",
       excerpt: "A personal journey of resilience and academic independence.",
       link: "https://www.pulse.ng/story/only-student-in-my-department-survival-story-2025101313542051579"
     },
@@ -72,7 +72,7 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "Lummy’s Viral Video Gets Nigerians Talking About Consent",
       category: "Lifestyle and Culture",
-      image: "/src/assets/article_2.png",
+      image: "/src/assets/Lummy’s Viral Video Gets Nigerians Talking About Consent.png",
       excerpt: "Analyzing the social implications of viral content and consent.",
       link: "https://www.pulse.ng/story/lummy-viral-video-2025100314054718824"
     },
@@ -189,14 +189,14 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "The Secret to Wearing Heels Without Pain",
       category: "Fashion and Beauty",
-      image: "/src/assets/article_2.png",
+      image: "/src/assets/The Secret to Wearing Heels Without Pain.png",
       excerpt: "Practical style tips for comfort and elegance.",
       link: "https://www.pulse.ng/story/why-your-heels-hurt-and-how-to-fix-it-2025090112291627062"
     },
     {
       title: "The Lagos Restaurants Everyone Secretly Loves for Date Night",
       category: "Fashion and Beauty",
-      image: "/src/assets/lagos_bridge.png",
+      image: "/src/assets/The Lagos Restaurants Everyone Secretly Loves for Date Night.png",
       excerpt: "Top dining spots for a romantic evening.",
       link: "https://www.pulse.ng/story/date-spots-in-lagos-2025082814034205338"
     },
