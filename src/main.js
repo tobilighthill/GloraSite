@@ -10,16 +10,23 @@ const routes = {
   home: renderHome,
   about: renderAbout,
   portfolio: renderPortfolio,
+  blog: renderBlog,
   contact: renderContact
 };
 
-function navigate(route) {
+
+// Expose navigate to global scope
+window.navigate = function (route) {
   window.location.hash = route;
   const renderFunc = routes[route] || renderHome;
   renderFunc();
   window.scrollTo(0, 0);
   initReveal();
   updateActiveLink(route);
+}
+
+function navigate(route) {
+  window.navigate(route);
 }
 
 function updateActiveLink(route) {
@@ -39,6 +46,7 @@ const initNav = () => {
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#portfolio">Works</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="cta-button" style="padding: 10px 25px;">Hire Me</a>
@@ -71,7 +79,7 @@ function renderHome() {
       <div class="blob"></div>
       <div class="hero-content reveal">
         <h1>Crafting Stories That <span style="color: var(--accent-gold)">Resonate</span>.</h1>
-        <p>Expert Content Strategist & Professional Writer at Pulse Nigeria.</p>
+        <p>${content.profile.role}</p>
         <div style="display: flex; gap: 20px; justify-content: center;">
           <a href="#portfolio" class="cta-button" onclick="event.preventDefault(); navigate('portfolio')">Explore My Works</a>
           <a href="#contact" class="glass" style="padding: 15px 40px; border-radius: 50px; display: flex; align-items: center; justify-content: center;" onclick="event.preventDefault(); navigate('contact')">Get in Touch</a>
@@ -88,9 +96,9 @@ function renderHome() {
             </div>
          </div>
          <div class="reveal">
-            <h2 style="font-size: 3rem; margin-bottom: 20px;">The Voice of <span style="color: var(--accent-gold)"> nigeria's</span> Digital Landscape.</h2>
+            <h2 style="font-size: 3rem; margin-bottom: 20px;">The Voice of <span style="color: var(--accent-gold)">Modern Media</span>.</h2>
             <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.2rem;">
-              With nearly a decade of experience in Nigeria's leading media houses, I bring a unique perspective to every piece I write. From investigative journalism to brand storytelling, my work is defined by clarity, impact, and authenticity.
+              ${content.profile.bio.split('\n\n')[0]}
             </p>
             <button class="cta-button" onclick="navigate('about')">Read My Story</button>
          </div>
@@ -144,33 +152,16 @@ function renderAbout() {
               </div>
               <div class="glass" style="padding: 20px;">
                 <h4 style="color: var(--accent-gold);">Focus Areas</h4>
-                <p>Digital Media, Culture, Tech</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                  ${content.focusAreas.map(area => `<span style="background: rgba(212, 175, 55, 0.1); padding: 5px 10px; border-radius: 15px; font-size: 0.9rem; color: var(--accent-gold);">${area}</span>`).join('')}
+                </div>
               </div>
             </div>
           </div>
           <div class="reveal">
-            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">More than just a writer, I am a <span style="color: var(--accent-gold)">cultural architect</span>.</h2>
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px;">More than just a writer, I am a <span style="color: var(--accent-gold)">storyteller</span>.</h2>
             <div style="color: var(--text-secondary); font-size: 1.1rem; display: grid; gap: 20px;">
-              <p>My journey started in the heart of Lagos, fueled by a curiosity for people's stories. Over the years, I've had the privilege of working with some of Nigeria's most influential media platforms, including my current home, Pulse Nigeria.</p>
-              <p>At Pulse, I lead content strategies that reach millions of readers daily. My work isn't just about clicks; it's about building communities and reflecting the vibrant reality of West African life through words.</p>
-              <p>I believe that in an age of artificial intelligence, human-centered storytelling is more valuable than ever. I specialize in taking complex narratives and making them accessible, engaging, and above all, human.</p>
-            </div>
-            <div style="margin-top: 50px;">
-               <h3 style="margin-bottom: 20px;">Career Highlights</h3>
-               <ul style="display: grid; gap: 15px;">
-                 <li style="display: flex; gap: 15px; align-items: center;">
-                    <span style="color: var(--accent-gold); font-size: 1.5rem;">✓</span> 
-                    <span>Led the 2024 Digital Culture series at Pulse Nigeria.</span>
-                 </li>
-                 <li style="display: flex; gap: 15px; align-items: center;">
-                    <span style="color: var(--accent-gold); font-size: 1.5rem;">✓</span> 
-                    <span>Published over 50 investigative pieces on West African tech.</span>
-                 </li>
-                 <li style="display: flex; gap: 15px; align-items: center;">
-                    <span style="color: var(--accent-gold); font-size: 1.5rem;">✓</span> 
-                    <span>Brand consultant for leading Nigerian fintech startups.</span>
-                 </li>
-               </ul>
+              ${content.profile.bio.split('\n\n').map(p => `<p>${p}</p>`).join('')}
             </div>
           </div>
         </div>
@@ -185,23 +176,53 @@ function renderPortfolio() {
       <div class="container">
         <h1 class="reveal" style="font-size: 4rem; margin-bottom: 20px; text-align: center;">Selected <span style="color: var(--accent-gold)">Works</span></h1>
         <p class="reveal" style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; max-width: 600px; margin-inline: auto;">
-          A collection of my best work across journalism, editorial, and brand strategy.
+          A collection of my best work across various categories.
         </p>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px;">
-          ${content.articles.map(article => `
-            <div class="portfolio-card glass reveal" style="overflow: hidden;">
-              <div style="height: 300px; overflow: hidden;">
-                <img src="${article.image}" alt="${article.title}" style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
-              </div>
-              <div style="padding: 40px;">
-                <span style="color: var(--accent-gold); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">${article.category}</span>
-                <h3 style="margin: 15px 0 20px 0; font-size: 2rem; line-height: 1.3;">${article.title}</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">${article.excerpt}</p>
-                <a href="#" class="cta-button" style="padding: 10px 30px;">Read Full Piece</a>
-              </div>
+        ${[...new Set(content.articles.map(a => a.category))].map(category => `
+          <div class="reveal" style="margin-bottom: 80px;">
+            <h3 style="font-size: 2rem; margin-bottom: 30px; border-left: 3px solid var(--accent-gold); padding-left: 20px;">${category}</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+              ${content.articles.filter(a => a.category === category).map(article => `
+                <a href="${article.link}" target="_blank" class="portfolio-card glass" style="display: block; overflow: hidden; transition: transform 0.3s ease;">
+                  <div style="height: 200px; overflow: hidden; position: relative;">
+                    <img src="${article.image}" alt="${article.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; color: var(--accent-gold);">
+                       Read Article
+                    </div>
+                  </div>
+                  <div style="padding: 25px;">
+                    <h4 style="margin: 0 0 10px 0; font-size: 1.3rem; line-height: 1.4;">${article.title}</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0;">${article.excerpt}</p>
+                  </div>
+                </a>
+              `).join('')}
             </div>
-          `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    </section>
+  `;
+}
+
+function renderBlog() {
+  mainContent.innerHTML = `
+    <section class="section" style="padding-top: 150px;">
+      <div class="container">
+        <h1 class="reveal" style="font-size: 4rem; margin-bottom: 20px; text-align: center;">The <span style="color: var(--accent-gold)">Blog</span></h1>
+        <p class="reveal" style="text-align: center; color: var(--text-secondary); margin-bottom: 60px; max-width: 600px; margin-inline: auto;">
+          Thoughts, stories, and insights on the evolving landscape of digital media.
+        </p>
+
+        <div style="display: grid; gap: 40px; max-width: 800px; margin: 0 auto;">
+           ${content.blog.map(post => `
+             <article class="glass reveal" style="padding: 40px;">
+                <span style="color: var(--accent-gold); font-size: 0.9rem;">${post.date}</span>
+                <h3 style="font-size: 2rem; margin: 10px 0 20px 0;">${post.title}</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">${post.excerpt}</p>
+                <button class="cta-button" style="padding: 10px 25px; font-size: 0.9rem;">Read More</button>
+             </article>
+           `).join('')}
         </div>
       </div>
     </section>
@@ -221,15 +242,19 @@ function renderContact() {
            <div class="reveal">
               <div class="glass" style="padding: 30px; margin-bottom: 20px;">
                  <h4 style="color: var(--accent-gold); margin-bottom: 10px;">Email</h4>
-                 <p>gloria@pulse.ng</p>
+                 <p><a href="mailto:${content.contact.email}">${content.contact.email}</a></p>
+              </div>
+              <div class="glass" style="padding: 30px; margin-bottom: 20px;">
+                 <h4 style="color: var(--accent-gold); margin-bottom: 10px;">WhatsApp</h4>
+                 <p><a href="https://wa.me/${content.contact.whatsapp.replace('+', '')}" target="_blank">${content.contact.whatsapp}</a></p>
               </div>
               <div class="glass" style="padding: 30px; margin-bottom: 20px;">
                  <h4 style="color: var(--accent-gold); margin-bottom: 10px;">Location</h4>
-                 <p>Lagos, Nigeria</p>
+                 <p>${content.profile.location}</p>
               </div>
               <div class="social-links" style="display: flex; gap: 15px; margin-top: 30px;">
-                <a href="#" class="glass" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">𝕏</a>
-                <a href="#" class="glass" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">Li</a>
+                <a href="${content.contact.instagram}" target="_blank" class="glass" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">IG</a>
+                <a href="${content.contact.linkedin}" target="_blank" class="glass" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">In</a>
               </div>
            </div>
            
@@ -256,7 +281,7 @@ const initFooter = () => {
       <div class="logo" style="margin-bottom: 20px; font-size: 2rem;">GLORIA.</div>
       <p style="color: var(--text-secondary); margin-bottom: 40px; font-size: 1.1rem;">Elevating narratives in the heart of West Africa.</p>
       <div style="border-top: 1px solid var(--glass-border); padding-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-        <p style="font-size: 0.9rem; color: var(--text-secondary);">© 2025 Gloria Adebayo. All rights reserved.</p>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">© 2025 Gloria Adesanya. All rights reserved.</p>
         <div style="display: flex; gap: 30px;">
            <a href="#" style="font-size: 0.9rem; color: var(--text-secondary);">Privacy Policy</a>
            <a href="#" style="font-size: 0.9rem; color: var(--text-secondary);">Terms of Service</a>
