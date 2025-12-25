@@ -62,6 +62,15 @@ const initNav = () => {
     });
   });
 
+  // Add event listener for "Hire Me" button
+  const hireMeButton = navbar.querySelector('.cta-button');
+  if (hireMeButton) {
+    hireMeButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigate('contact');
+    });
+  }
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
