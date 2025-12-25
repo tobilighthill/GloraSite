@@ -65,7 +65,7 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "From Hustle to Heartbreak: Nigerians Share Brutal Family Money Struggles",
       category: "Lifestyle and Culture",
-      image: "/src/assets/article_1.png",
+      image: "/src/assets/frustrated_man.png",
       excerpt: "Real stories of financial pressure and family dynamics in Nigeria.",
       link: "https://www.pulse.ng/story/family-money-struggles-nigeria-2025093014234167631"
     },
@@ -79,14 +79,14 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "Colonial Lagos vs Modern Lagos: A lifestyle comparison",
       category: "Lifestyle and Culture",
-      image: "/src/assets/article_1.png",
+      image: "/src/assets/lagos_bridge.png",
       excerpt: "Tracing the evolution of Lagosian lifestyle through the ages.",
       link: "https://www.pulse.ng/story/colonial-lagos-vs-modern-lagos-a-lifestyle-comparison-2025100117273680762"
     },
     {
       title: "No Backyard, No Problem: How to Throw the Perfect Indoor BBQ Party in Nigeria",
       category: "Lifestyle and Culture",
-      image: "/src/assets/article_2.png",
+      image: "/src/assets/bbq_meat.png",
       excerpt: "A guide to hosting great events despite space constraints.",
       link: "https://www.pulse.ng/story/how-to-host-an-indoor-bbq-party-2025071022163511329"
     },
@@ -167,7 +167,7 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "How to Spice Up Your Relationship This Christmas",
       category: "Relationship",
-      image: "/src/assets/article_1.png",
+      image: "/src/assets/couple_kitchen.png",
       excerpt: "Festive tips for strengthening romantic bonds.",
       link: "https://www.pulse.ng/story/spice-up-your-relationship-christmas-2025122210384680667"
     },
@@ -181,7 +181,7 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "10 Non-Sexual Ways to Deepen Intimacy With Your Partner",
       category: "Relationship",
-      image: "/src/assets/article_1.png",
+      image: "/src/assets/holding_hands.png",
       excerpt: "Building emotional closeness and connection.",
       link: "https://www.pulse.ng/story/non-sexual-ways-to-deepen-intimacy-with-your-partner-2025121616201849366"
     },
@@ -196,7 +196,7 @@ I believe that in an age of artificial intelligence, human-centered storytelling
     {
       title: "The Lagos Restaurants Everyone Secretly Loves for Date Night",
       category: "Fashion and Beauty",
-      image: "/src/assets/article_1.png",
+      image: "/src/assets/lagos_bridge.png",
       excerpt: "Top dining spots for a romantic evening.",
       link: "https://www.pulse.ng/story/date-spots-in-lagos-2025082814034205338"
     },
