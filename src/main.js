@@ -145,8 +145,8 @@ function renderAbout() {
             <div class="glass" style="padding: 10px; display: grid; gap: 10px;">
               <img src="${content.profile.portrait}" style="border-radius: 15px; width: 100%;">
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                 <img src="/src/assets/1000168064.jpg" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
-                 <img src="/src/assets/1000168065.jpg" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+                 <img src="/assets/1000168064.jpg" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+                 <img src="/assets/1000168065.jpg" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
               </div>
             </div>
             <div style="margin-top: 30px; display: grid; gap: 15px;">
