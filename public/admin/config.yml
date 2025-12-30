@@ -7,10 +7,10 @@ public_folder: "/assets"
 
 collections:
   - name: "blog"
-    label: "Blog"
+    label: "Blog Management"
     files:
       - file: "public/blog.json"
-        label: "Blog Posts"
+        label: "Manage All Articles"
         name: "posts"
         fields:
           - label: "Posts"
